@@ -89,6 +89,10 @@
         type: Boolean,
         default: true
       },
+      contentZIndex: {
+        type: Number,
+        default: 1000
+      },
       styles: {
         type: Object,
         default: () => ({})
@@ -126,6 +130,7 @@
             ...element,
             width: element.width ? `${element.width}px` : null,
             height: element.height ? `${element.height}px` : null,
+            "z-index": this.contentZIndex
           },
           controls: {
             ...controls,
