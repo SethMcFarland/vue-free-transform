@@ -1,34 +1,34 @@
 <template>
-    <div :class="{[`${classPrefix}-transform`]: true, [`${classPrefix}-transform--active`]:selected}"
-         :style="styles"
-         @click="click"
-         @dblclick="dblClick"
-         @mousedown="mousedown">
-        <div :class="`${classPrefix}-transform__content`" :style="computedStyles.element">
-            <slot></slot>
-        </div>
-        <div v-if="selected"
-             :class="`${classPrefix}-transform__controls`"
-             :style="computedStyles.controls">
-            <div :class="`${classPrefix}-transform__rotator`" @mousedown="handleRotation"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tl`]"
-                 @mousedown="handleScale('tl',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--ml`]"
-                 @mousedown="handleScale('ml',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tr`]"
-                 @mousedown="handleScale('tr',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tm`]"
-                 @mousedown="handleScale('tm',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--bl`]"
-                 @mousedown="handleScale('bl',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--bm`]"
-                 @mousedown="handleScale('bm',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--br`]"
-                 @mousedown="handleScale('br',$event)"></div>
-            <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--mr`]"
-                 @mousedown="handleScale('mr',$event)"></div>
-        </div>
+  <div :class="{[`${classPrefix}-transform`]: true, [`${classPrefix}-transform--active`]:selected}"
+       :style="styles"
+       @click="click"
+       @dblclick="dblClick"
+       @mousedown="mousedown">
+    <div :class="`${classPrefix}-transform__content`" :style="computedStyles.element">
+      <slot></slot>
     </div>
+    <div v-if="selected"
+         :class="`${classPrefix}-transform__controls`"
+         :style="computedStyles.controls">
+      <div :class="`${classPrefix}-transform__rotator`" @mousedown="handleRotation"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tl`]"
+           @mousedown="handleScale('tl',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--ml`]"
+           @mousedown="handleScale('ml',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tr`]"
+           @mousedown="handleScale('tr',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--tm`]"
+           @mousedown="handleScale('tm',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--bl`]"
+           @mousedown="handleScale('bl',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--bm`]"
+           @mousedown="handleScale('bm',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--br`]"
+           @mousedown="handleScale('br',$event)"></div>
+      <div :class="[`${classPrefix}-transform__scale-point ${classPrefix}-transform__scale-point--mr`]"
+           @mousedown="handleScale('mr',$event)"></div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -203,6 +203,7 @@
         const up = () => {
           document.removeEventListener('mousemove', drag);
           document.removeEventListener('mouseup', up);
+          this.$emit("dragEnd", {x: this.x, y: this.y, width: this.width, height: this.height, angle: this.angle, offsetX: this.offsetX, offsetY: this.offsetY, scaleX: this.scaleX, scaleY: this.scaleY});
         };
 
         document.addEventListener('mousemove', drag);
