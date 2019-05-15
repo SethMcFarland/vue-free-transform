@@ -1,9 +1,9 @@
 <template>
   <div :class="{[`${classPrefix}-transform`]: true, [`${classPrefix}-transform--active`]:selected}"
        :style="styles"
-       @click.stop.prevent="click"
-       @dblclick.stop.prevent="dblClick"
-       @mousedown.stop.prevent="mousedown">
+       @click="click"
+       @dblclick="dblClick"
+       @mousedown="mousedown">
     <div :class="`${classPrefix}-transform__content`" :style="computedStyles.element">
       <slot></slot>
     </div>
